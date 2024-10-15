@@ -16,8 +16,27 @@
 
     @foreach ($data as $key => $value)
         <b>{{ $key }} :-</b> <p>{{ $value }}</p>
+        
+        @isset($images[$key])
+            <p>Attachments:-</p>
+    
+            @foreach ($images[$key] as  $image)
+                
+                    <img src={{ $image }} widht="20%" height="20%"/>
+                    
+                    <br /><br /><br />
+                
+            @endforeach
+        @endisset
     @endforeach
+    
+    <br />
+    <br />
+    
+    
+    
 
 </body>
 
 </html>
+

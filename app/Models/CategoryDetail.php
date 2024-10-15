@@ -24,4 +24,9 @@ class CategoryDetail extends Model
     public function setParentIdAttribute($value){
         $this->attributes['parent_id'] = is_null($value) ? 0 : $value;
     }
+    
+    public function scopeParent($query)
+    {
+        return $query->where('parent_id',0);
+    }
 }
