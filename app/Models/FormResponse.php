@@ -2,12 +2,14 @@
 
 namespace App\Models;
 use Storage;
+use App\Models\FormMediaAttachments;
+
 
 use Illuminate\Database\Eloquent\Model;
 
 class FormResponse extends Model
 {
-    protected $fillable = ['form_type_id', 'form_response', 'created_by' , 'file_name'];
+    protected $fillable = ['form_type_id', 'form_response', 'created_by' , 'file_name','room_id' , 'is_follow_up_incomplete'];
 
     public $timestamps = true;
     
@@ -30,4 +32,9 @@ class FormResponse extends Model
     public function getJsonDataAttribute(){
         return is_array($this->form_response) ? $this->form_response :(json_decode($this->form_response,true));
     }
+    
+    public function attachments(){
+        return $this->hasMany(FormMediaAttachments::class);
+    }
+    
 }
